@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7668271341895454922}
   - component: {fileID: 1191742431740430502}
+  - component: {fileID: -6836438025673089043}
   m_Layer: 0
   m_Name: sungtruong
   m_TagString: Untagged
@@ -84,3 +85,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-6836438025673089043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2351406081120867703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91304f3f74436374cb5669a2c381401c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 3077130672422428994, guid: 196824191af14f14aae35fd4b9dd8eca, type: 3}
+  damage: 1
+  timeBwtAttack: 2
+  bulletAmount: 1
+  bulletSpeed: 10
+  bulletDelayTime: 3

@@ -16,8 +16,20 @@ public class EquipmentController : MonoBehaviour
         }
         instance = this;
     }
-    public void Equipment(GameObject newItem, EquipmentType type)
+    public void Equipment(GameObject newItem, EquipmentType type, bool overrideOldEquipment = false)
     {
+        if (!overrideOldEquipment)
+        {
+            if (type == EquipmentType.Gun && currentGunItem != null)
+            {
+                return;
+            }
+
+            if (type == EquipmentType.Tool && currentToolItem != null)
+            {
+                return;
+            }
+        }
         switch (type)
         {
             case EquipmentType.Gun:

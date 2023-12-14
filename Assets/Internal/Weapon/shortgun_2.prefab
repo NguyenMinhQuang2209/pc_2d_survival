@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8781337559158457136}
   - component: {fileID: 2775820524902085516}
+  - component: {fileID: 7542176390208408650}
   m_Layer: 0
   m_Name: shortgun_2
   m_TagString: Untagged
@@ -84,3 +85,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7542176390208408650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2231065244799912792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91304f3f74436374cb5669a2c381401c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 3243883339337976868, guid: 3e2edf6ab45239949a699bbb286d1b35, type: 3}
+  damage: 1
+  timeBwtAttack: 2
+  bulletAmount: 1
+  bulletSpeed: 10
+  bulletDelayTime: 3
