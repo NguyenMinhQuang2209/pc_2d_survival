@@ -629,7 +629,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3288575356170021965}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -701,3 +701,4 @@ MonoBehaviour:
   itemDescription: {fileID: 3288575354831992559}
   buyItemBtn: {fileID: 3288575354857803934}
   buytItemTxt: {fileID: 3288575355078164201}
+  equipmentObject: {fileID: 7337017232226491580, guid: 038b49b04106e6b41abd0648267dec55, type: 3}

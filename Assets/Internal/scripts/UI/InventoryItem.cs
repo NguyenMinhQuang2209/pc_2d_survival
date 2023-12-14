@@ -11,6 +11,10 @@ public class InventoryItem : MonoBehaviour
     public Button buyItemBtn;
     public TextMeshProUGUI buytItemTxt;
     private UpgradeItem upgradeItem;
+
+    [Space(10)]
+    [Header("For equipment only")]
+    public GameObject equipmentObject;
     private void Start()
     {
         buyItemBtn.onClick.AddListener(() =>
@@ -30,6 +34,26 @@ public class InventoryItem : MonoBehaviour
     {
         if (upgradeItem != null)
         {
+            if (!upgradeItem.GetBuyState())
+            {
+                switch (upgradeItem.itemType)
+                {
+                    case UpdateType.Gun:
+                        if (equipmentObject != null)
+                        {
+                            EquipmentController.instance.Equipment(equipmentObject, EquipmentType.Gun);
+                        }
+                        break;
+                    case UpdateType.Tool:
+                        if (equipmentObject != null)
+                        {
+                            EquipmentController.instance.Equipment(equipmentObject, EquipmentType.Tool);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
             upgradeItem.UpdateLevel();
             UIController.instance.ResetInventoryStoreItem();
         }

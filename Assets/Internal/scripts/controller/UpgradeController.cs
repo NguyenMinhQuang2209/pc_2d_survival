@@ -57,9 +57,10 @@ public class UpgradeItem
 {
     public InventoryItem item;
     private int level = 0;
-    public UpdateName updateName;
+    public UpdateType itemType;
     private bool wasBuy = false;
     public List<UpgradeItemNextLevel> levels = new();
+
     public bool MaxLevel()
     {
         return level == levels.Count;

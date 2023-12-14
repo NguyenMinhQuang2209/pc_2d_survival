@@ -2,8 +2,15 @@ public enum ItemName
 {
     Other
 }
-public enum UpdateName
+public enum UpdateType
 {
-    U_Speed,
-    A_Bullet
+    Gun,
+    Tool,
+    Plus,
+    Other
+}
+public enum EquipmentType
+{
+    Gun,
+    Tool
 }

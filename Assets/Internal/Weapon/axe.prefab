@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4467952568255563159}
   - component: {fileID: 7590815315974890100}
   m_Layer: 0
-  m_Name: luoihai
+  m_Name: axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
