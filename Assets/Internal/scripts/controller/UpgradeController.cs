@@ -93,6 +93,7 @@ public class UpgradeController : MonoBehaviour
 [System.Serializable]
 public class UpgradeItem
 {
+    public bool useCustomDescription = false;
     public InventoryItem item;
     private int level = 0;
     public UpdateType itemType;
@@ -119,6 +120,14 @@ public class UpgradeItem
     public bool GetBuyState()
     {
         return wasBuy;
+    }
+    public string GetItemDescription()
+    {
+        if (MaxLevel())
+        {
+            return "";
+        }
+        return levels[level].description;
     }
     public void UpdateLevel()
     {

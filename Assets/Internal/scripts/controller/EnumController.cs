@@ -12,6 +12,7 @@ public enum ItemName
     ShortGun2,
     SungTruong,
     Coin,
+    BulletSpeed,
 }
 public enum ItemPlusType
 {

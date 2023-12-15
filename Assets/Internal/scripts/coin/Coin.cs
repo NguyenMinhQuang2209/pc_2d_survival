@@ -15,6 +15,10 @@ public class Coin : MonoBehaviour
     }
     public void InitCoin(int v)
     {
-        coinGet = v;
+        float plusCoin = PlusCommonConfig.instance.GetPlusCommon(PlusCommonItem.Coin_Get);
+        float coinCircle = PlusCommonConfig.instance.GetPlusCommon(PlusCommonItem.Coin_Circle);
+        Vector2 defaultBoxSize = GetComponent<BoxCollider2D>().size;
+        GetComponent<BoxCollider2D>().size = new(defaultBoxSize.x + coinCircle, defaultBoxSize.y + coinCircle);
+        coinGet = (int)Mathf.Ceil(v * plusCoin);
     }
 }

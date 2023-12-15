@@ -106,3 +106,8 @@ MonoBehaviour:
   bulletDelayTime: 1
   shootPos: {fileID: 0}
   weaponName: 5
+  plusBulletAmountKey: 0
+  plusDamageKey: 2
+  plusTimeBwtAttackKey: 3
+  plusDelayDieTimeKey: 5
+  plusBulletSpeedKey: 4
