@@ -7,7 +7,7 @@ public class MessageController : MonoBehaviour
     // success message
 
     //failing message
-    public static string F_BUY_ITEM = "Bạn thiếu vàng!";
+    public static string LACK_OF_COIN = "Bạn thiếu vàng!";
 
     //other message
     public static string I_OPEN_INVENTORY = "Inventory";

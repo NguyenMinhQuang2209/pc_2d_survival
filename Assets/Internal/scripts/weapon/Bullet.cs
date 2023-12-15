@@ -24,11 +24,12 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         int layer = collision.gameObject.layer;
-        if (((1 << enemyMask) & layer) != 0)
+        if (((1 << layer) & enemyMask) != 0)
         {
             if (collision.gameObject.TryGetComponent<Health>(out var health))
             {
                 health.TakeDamage(damage);
+                Destroy(gameObject);
             }
         }
     }

@@ -33,8 +33,16 @@ public class InventoryItem : MonoBehaviour
     }
     public void BuyItem()
     {
+
         if (upgradeItem != null)
         {
+            if (upgradeItem.GetPrice() > CoinController.instance.GetCurrentCoin())
+            {
+                LogController.instance.Log(MessageController.LACK_OF_COIN);
+                return;
+            }
+            CoinController.instance.MinusCoin(upgradeItem.GetPrice());
+
             if (!upgradeItem.GetBuyState())
             {
                 switch (upgradeItem.itemType)

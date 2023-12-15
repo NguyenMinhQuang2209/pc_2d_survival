@@ -14,15 +14,20 @@ public abstract class Health : MonoBehaviour
     }
     public virtual void TakeDamage(int damage)
     {
-        if (!objectDie)
+        if (objectDie)
         {
-
+            return;
         }
         currentHealth = Mathf.Max(0, currentHealth - damage);
         if (currentHealth == 0)
         {
             objectDie = true;
+            ObjectDie();
         }
+    }
+    public virtual void ObjectDie()
+    {
+        Destroy(gameObject);
     }
     public int GetCurrentHealth()
     {

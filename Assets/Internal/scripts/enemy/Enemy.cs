@@ -6,8 +6,10 @@ public class Enemy : Health
     private NavMeshAgent agent;
     [SerializeField] private float speed = 1f;
     [SerializeField] private int damage = 0;
+    [SerializeField] private int coinGet = 1;
 
     Transform player;
+
     private void Start()
     {
         MyInitialised();
@@ -36,8 +38,13 @@ public class Enemy : Health
             if (col.TryGetComponent<Health>(out var health))
             {
                 health.TakeDamage(damage);
-                Destroy(gameObject);
+                ObjectDie();
             }
         }
+    }
+    public override void ObjectDie()
+    {
+        CoinController.instance.SpawnCoinObject(transform.position, coinGet);
+        base.ObjectDie();
     }
 }
