@@ -310,6 +310,7 @@ MonoBehaviour:
   buyItemBtn: {fileID: 5293955769645508188}
   buytItemTxt: {fileID: 5293955769903302699}
   equipmentObject: {fileID: 2351406081120867703, guid: efee1885dc103b04287d3824f82bd71c, type: 3}
+  quickSlotItem: {fileID: -1902016769843839302, guid: a532976205c804e449b98a8f89f1d54f, type: 3}
 --- !u!1 &5293955769620987951
 GameObject:
   m_ObjectHideFlags: 0

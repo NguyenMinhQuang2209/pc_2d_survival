@@ -15,6 +15,7 @@ public class InventoryItem : MonoBehaviour
     [Space(10)]
     [Header("For equipment only")]
     public GameObject equipmentObject;
+    public QuickslotItem quickSlotItem;
     private void Start()
     {
         buyItemBtn.onClick.AddListener(() =>
@@ -43,11 +44,19 @@ public class InventoryItem : MonoBehaviour
                         {
                             EquipmentController.instance.Equipment(equipmentObject, EquipmentType.Gun);
                         }
+                        if (quickSlotItem != null)
+                        {
+                            QuickslotController.instance.AddingQuickslot(quickSlotItem, equipmentObject, EquipmentType.Gun);
+                        }
                         break;
                     case UpdateType.Tool:
                         if (equipmentObject != null)
                         {
                             EquipmentController.instance.Equipment(equipmentObject, EquipmentType.Tool);
+                        }
+                        if (quickSlotItem != null)
+                        {
+                            QuickslotController.instance.AddingQuickslot(quickSlotItem, equipmentObject, EquipmentType.Tool);
                         }
                         break;
                     default:

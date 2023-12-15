@@ -702,3 +702,4 @@ MonoBehaviour:
   buyItemBtn: {fileID: 2614312768383540354}
   buytItemTxt: {fileID: 2614312768608285429}
   equipmentObject: {fileID: 0}
+  quickSlotItem: {fileID: 0}
