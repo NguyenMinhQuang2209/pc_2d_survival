@@ -1,10 +1,15 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class UpgradeController : MonoBehaviour
 {
     [SerializeField] private List<UpgradeItem> upgradeItems = new();
     public static UpgradeController instance;
+    private Dictionary<string, float> plusStores = new();
+
+    public event EventHandler OnBuyPlusItem;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -13,6 +18,25 @@ public class UpgradeController : MonoBehaviour
             return;
         }
         instance = this;
+    }
+    private void Start()
+    {
+        ResetStoreItemPlus();
+    }
+    public void ResetStoreItemPlus()
+    {
+        List<UpgradeItem> inventoryItems = GetListInventoryItem();
+        plusStores?.Clear();
+        for (int i = 0; i < inventoryItems.Count; i++)
+        {
+            UpgradeItem tempItem = inventoryItems[i];
+            foreach (UpgradeItemNextLevel item in tempItem.levels)
+            {
+                string key = tempItem.itemName.ToString() + item.plusType;
+                plusStores[key] = plusStores.ContainsKey(key) ? plusStores[key] + item.plusValue : item.plusValue;
+            }
+        }
+        OnBuyPlusItem?.Invoke(this, null);
     }
     public List<UpgradeItem> GetListInventoryItem()
     {
@@ -51,6 +75,15 @@ public class UpgradeController : MonoBehaviour
         }
         return temp;
     }
+    public float GetPlus(string key)
+    {
+        return plusStores.ContainsKey(key) ? plusStores[key] : 0;
+    }
+    public void AddingPlusItem(string key, float v)
+    {
+        plusStores[key] = plusStores.ContainsKey(key) ? plusStores[key] + v : v;
+        OnBuyPlusItem?.Invoke(this, null);
+    }
 }
 [System.Serializable]
 public class UpgradeItem
@@ -58,6 +91,7 @@ public class UpgradeItem
     public InventoryItem item;
     private int level = 0;
     public UpdateType itemType;
+    public ItemName itemName;
     private bool wasBuy = false;
     public List<UpgradeItemNextLevel> levels = new();
 
@@ -84,8 +118,11 @@ public class UpgradeItem
     public void UpdateLevel()
     {
         wasBuy = true;
+
         if (!MaxLevel())
         {
+            string key = itemName.ToString() + levels[level].plusType;
+            UpgradeController.instance.AddingPlusItem(key, levels[level].plusValue);
             level += 1;
         }
     }
@@ -95,5 +132,7 @@ public class UpgradeItem
 public class UpgradeItemNextLevel
 {
     public int price = 0;
+    public ItemPlusType plusType;
     public float plusValue = 0f;
+    public string description = string.Empty;
 }

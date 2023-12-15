@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     [SerializeField] private float speed = 1f;
+
+    private float plusSpeed = 0f;
 
     Animator animator;
 
@@ -19,6 +22,12 @@ public class PlayerMovement : MonoBehaviour
                 break;
             }
         }
+        UpgradeController.instance.OnBuyPlusItem += OnChangePlusItemEvent;
+    }
+
+    private void OnChangePlusItemEvent(object sender, EventArgs e)
+    {
+        plusSpeed = PlusCommonConfig.instance.GetPlusCommon(PlusCommonItem.Speed);
     }
 
     private void Update()
@@ -40,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 newRot = new(0f, movement.x < 0f ? 180f : 0f, 0f);
             transform.rotation = Quaternion.Euler(newRot);
-            rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * movement.normalized);
+            rb.MovePosition(rb.position + (speed + plusSpeed) * Time.fixedDeltaTime * movement.normalized);
         }
     }
 }

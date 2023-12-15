@@ -38,3 +38,18 @@ public abstract class Health : MonoBehaviour
         return maxHealth + plusHealth;
     }
 }
+[System.Serializable]
+public class PlusKey
+{
+    public ItemName name;
+    public ItemPlusType type;
+    public string GetKey()
+    {
+        return name.ToString() + type;
+    }
+    public PlusKey(ItemName name, ItemPlusType type)
+    {
+        this.name = name;
+        this.type = type;
+    }
+}
