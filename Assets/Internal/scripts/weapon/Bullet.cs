@@ -13,19 +13,20 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-    private void Update()
+    /*private void Update()
     {
         if (wasInit)
         {
             rb.velocity = speed * Time.deltaTime * dir;
         }
-    }
+    }*/
     public void Initialized(int damage, float speed, Vector3 shootDir, float bulletDelayTime)
     {
         this.damage = damage;
         this.speed = speed;
         dir = shootDir;
         wasInit = true;
+        rb.AddForce(shootDir * speed * Time.deltaTime, ForceMode2D.Force);
         Destroy(gameObject, bulletDelayTime);
     }
     private void OnTriggerEnter2D(Collider2D collision)
