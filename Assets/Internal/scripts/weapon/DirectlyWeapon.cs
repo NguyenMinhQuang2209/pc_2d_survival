@@ -23,10 +23,14 @@ public class DirectlyWeapon : Weapon
         for (int i = 0; i < bulletAmount; i++)
         {
             float angle = i == 0 ? 0 : (i % 2 == 0) ? (i - 1) * shootAngle : -i * shootAngle;
+
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
             Vector3 offset = rotation * shootDir;
             Bullet tempBullet = Instantiate(bullet, shootPos.position, Quaternion.identity);
             tempBullet.Initialized(damage, bulletSpeed, offset, bulletDelayTime);
+
+            float bulletAngle = Mathf.Atan2(shootDir.y, shootDir.x) * Mathf.Rad2Deg;
+            tempBullet.transform.rotation = Quaternion.Euler(0, 0, bulletAngle + 270f);
         }
     }
 }

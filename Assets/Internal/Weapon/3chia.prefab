@@ -97,10 +97,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eb3c3f569e958d4098b0cc933dc98bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
+  bullet: {fileID: 1194430203529144527, guid: dcdac83303010a34a8ae3ed25d796684, type: 3}
+  shootAngle: 10
   damage: 1
   timeBwtAttack: 1
-  bulletAmount: 1
-  bulletSpeed: 1
+  bulletAmount: 10
+  bulletSpeed: 100
   bulletDelayTime: 1
   shootPos: {fileID: 0}

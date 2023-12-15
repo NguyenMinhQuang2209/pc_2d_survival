@@ -14,12 +14,11 @@ public class CirclelyWeapon : Weapon
     }
     public override void Shoot()
     {
-
         for (int i = 0; i < 360f; i += (360 / bulletAmount))
         {
-            Bullet tempBullet = Instantiate(bullet, transform.position, Quaternion.identity);
-            //tempBullet.Initialized(damage, bulletSpeed, transform.right * 1.5f, bulletDelayTime);
+            Quaternion rotation = Quaternion.Euler(0, 0, i);
+            Bullet tempBullet = Instantiate(bullet, transform.position, rotation);
+            tempBullet.Initialized(damage, bulletSpeed, tempBullet.transform.up * 2f, bulletDelayTime);
         }
-
     }
 }
