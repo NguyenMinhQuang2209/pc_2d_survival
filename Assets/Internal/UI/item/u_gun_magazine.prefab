@@ -701,3 +701,4 @@ MonoBehaviour:
   itemDescription: {fileID: 505101230391882201}
   buyItemBtn: {fileID: 505101230434211752}
   buytItemTxt: {fileID: 505101230646376927}
+  equipmentObject: {fileID: 0}

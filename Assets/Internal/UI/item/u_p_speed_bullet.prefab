@@ -98,6 +98,7 @@ MonoBehaviour:
   itemDescription: {fileID: 3004797942427960978}
   buyItemBtn: {fileID: 3004797942466109667}
   buytItemTxt: {fileID: 3004797941642333844}
+  equipmentObject: {fileID: 0}
 --- !u!1 &3004797941252637505
 GameObject:
   m_ObjectHideFlags: 0

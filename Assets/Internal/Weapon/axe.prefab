@@ -103,3 +103,4 @@ MonoBehaviour:
   bulletAmount: 1
   bulletSpeed: 1
   bulletDelayTime: 1
+  shootPos: {fileID: 0}
