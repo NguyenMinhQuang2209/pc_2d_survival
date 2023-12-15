@@ -5,7 +5,7 @@ public enum ItemName
     Speed,
     Damage,
     TimeBwtAttack,
-    BaChi,
+    BaChia,
     Xeng,
     Liem,
     ShortGun1,
@@ -18,7 +18,9 @@ public enum ItemPlusType
     Value,
     Distance,
     Damage,
-    TimeBwtAttack
+    TimeBwtAttack,
+    Speed,
+    DelayDieTime
 }
 public enum UpdateType
 {

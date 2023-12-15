@@ -106,6 +106,7 @@ MonoBehaviour:
   bulletSpeed: 500
   bulletDelayTime: 3
   shootPos: {fileID: 2525952738004023403}
+  weaponName: 9
 --- !u!1 &7377329720812588969
 GameObject:
   m_ObjectHideFlags: 0

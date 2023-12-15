@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1975471172858244196}
   - component: {fileID: 4631095715379873724}
   m_Layer: 0
-  m_Name: shortgun
+  m_Name: shortgun_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,6 +106,7 @@ MonoBehaviour:
   bulletSpeed: 500
   bulletDelayTime: 3
   shootPos: {fileID: 4534398966179283577}
+  weaponName: 8
 --- !u!1 &6315656958484068569
 GameObject:
   m_ObjectHideFlags: 0

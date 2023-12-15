@@ -105,3 +105,4 @@ MonoBehaviour:
   bulletSpeed: 100
   bulletDelayTime: 1
   shootPos: {fileID: 0}
+  weaponName: 5

@@ -6,7 +6,7 @@ public class DirectlyWeapon : Weapon
     private void Update()
     {
         currentTimeBwtAttack += Time.deltaTime;
-        if (currentTimeBwtAttack >= timeBwtAttack)
+        if (currentTimeBwtAttack >= GetTimeBwtAttack())
         {
             currentTimeBwtAttack = 0f;
             Shoot();
@@ -20,13 +20,13 @@ public class DirectlyWeapon : Weapon
     public override void Shoot()
     {
         float axisZ = transform.eulerAngles.z;
-        for (int i = 0; i < bulletAmount; i++)
+        for (int i = 0; i < GetBulletAmount(); i++)
         {
             float angle = i == 0 ? 0 : (i % 2 == 0) ? (i - 1) * shootAngle : -i * shootAngle;
 
             Quaternion rotation = Quaternion.Euler(0, 0, angle + axisZ + 270f);
             Bullet tempBullet = Instantiate(bullet, shootPos.position, rotation);
-            tempBullet.Initialized(damage, bulletSpeed, tempBullet.transform.up * 2f, bulletDelayTime);
+            tempBullet.Initialized(GetDamage(), GetBulletSpeed(), tempBullet.transform.up * 2f, GetDelayDieTime());
         }
     }
 }

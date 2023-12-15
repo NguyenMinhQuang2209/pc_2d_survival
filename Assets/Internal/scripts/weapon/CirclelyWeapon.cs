@@ -6,7 +6,7 @@ public class CirclelyWeapon : Weapon
     private void Update()
     {
         currentTimeBwtAttack += Time.deltaTime;
-        if (currentTimeBwtAttack >= timeBwtAttack)
+        if (currentTimeBwtAttack >= GetTimeBwtAttack())
         {
             currentTimeBwtAttack = 0f;
             Shoot();
@@ -14,11 +14,11 @@ public class CirclelyWeapon : Weapon
     }
     public override void Shoot()
     {
-        for (int i = 0; i < 360f; i += (360 / bulletAmount))
+        for (int i = 0; i < 360f; i += (360 / GetBulletAmount()))
         {
             Quaternion rotation = Quaternion.Euler(0, 0, i);
             Bullet tempBullet = Instantiate(bullet, transform.position, rotation);
-            tempBullet.Initialized(damage, bulletSpeed, tempBullet.transform.up * 2f, bulletDelayTime);
+            tempBullet.Initialized(GetDamage(), GetBulletSpeed(), tempBullet.transform.up * 2f, GetDelayDieTime());
         }
     }
 }

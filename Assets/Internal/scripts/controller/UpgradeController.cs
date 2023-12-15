@@ -84,6 +84,11 @@ public class UpgradeController : MonoBehaviour
         plusStores[key] = plusStores.ContainsKey(key) ? plusStores[key] + v : v;
         OnBuyPlusItem?.Invoke(this, null);
     }
+    public void AddingPlusItem()
+    {
+        ResetStoreItemPlus();
+        OnBuyPlusItem?.Invoke(this, null);
+    }
 }
 [System.Serializable]
 public class UpgradeItem
@@ -121,10 +126,9 @@ public class UpgradeItem
 
         if (!MaxLevel())
         {
-            string key = itemName.ToString() + levels[level].plusType;
-            UpgradeController.instance.AddingPlusItem(key, levels[level].plusValue);
             level += 1;
         }
+        UpgradeController.instance.AddingPlusItem();
     }
 
 }
