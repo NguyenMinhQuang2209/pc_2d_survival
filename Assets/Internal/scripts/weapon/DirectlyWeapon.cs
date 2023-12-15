@@ -19,18 +19,14 @@ public class DirectlyWeapon : Weapon
     }
     public override void Shoot()
     {
-        Vector3 shootDir = transform.right;
+        float axisZ = transform.eulerAngles.z;
         for (int i = 0; i < bulletAmount; i++)
         {
             float angle = i == 0 ? 0 : (i % 2 == 0) ? (i - 1) * shootAngle : -i * shootAngle;
 
-            Quaternion rotation = Quaternion.Euler(0, 0, angle);
-            Vector3 offset = rotation * shootDir;
-            Bullet tempBullet = Instantiate(bullet, shootPos.position, Quaternion.identity);
-            tempBullet.Initialized(damage, bulletSpeed, offset, bulletDelayTime);
-
-            float bulletAngle = Mathf.Atan2(shootDir.y, shootDir.x) * Mathf.Rad2Deg;
-            tempBullet.transform.rotation = Quaternion.Euler(0, 0, bulletAngle + 270f);
+            Quaternion rotation = Quaternion.Euler(0, 0, angle + axisZ + 270f);
+            Bullet tempBullet = Instantiate(bullet, shootPos.position, rotation);
+            tempBullet.Initialized(damage, bulletSpeed, tempBullet.transform.up * 2f, bulletDelayTime);
         }
     }
 }
