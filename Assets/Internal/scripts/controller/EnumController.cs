@@ -44,3 +44,8 @@ public enum PlusCommonItem
     Coin_Get,
     Coin_Circle
 }
+public enum EnemyName
+{
+    Enemy_1,
+    Enemy_2
+}
