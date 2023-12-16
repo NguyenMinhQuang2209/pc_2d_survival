@@ -2151,8 +2151,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a94645104a72d947a4af8402703ece1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnXAxis: {x: -50, y: 50}
-  spawnYAxis: {x: -50, y: 50}
+  spawnXAxisTop: {x: 8, y: 10}
+  spawnXAxisDown: {x: -10, y: -8}
+  spawnYAxisTop: {x: 8, y: 10}
+  spawnYAxisDown: {x: -10, y: -8}
+  commonTimeBwtSpawn: 1
+  enemiesConfig:
+  - startSpawnDay: 0
+    endSpawnDay: -1
+    spawnAtHour: -1
+    enemies:
+    - enemyName: 0
+      amount: 50
+      timeBwtSpawn: 2
 --- !u!114 &834691830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2654,7 +2665,7 @@ MonoBehaviour:
   dateTxt: {fileID: 1673117638}
   light2D: {fileID: 619394801}
   timeSpeed: 600
-  startTimeHour: 0
+  startTimeHour: 23.7
   sunRiseHour: 0
   sunSetHour: 20
   nightIntensity: 0.5

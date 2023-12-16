@@ -73,4 +73,8 @@ public class DayNightController : MonoBehaviour
     {
         return (currentTime - startDate).Days + 1;
     }
+    public int GetCurrentHour()
+    {
+        return currentTime.TimeOfDay.Hours;
+    }
 }

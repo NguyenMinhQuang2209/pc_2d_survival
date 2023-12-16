@@ -27,7 +27,10 @@ public class Enemy : Health
         {
             float check = player.position.x - transform.position.x;
             transform.rotation = Quaternion.Euler(0f, check < 0f ? 180f : 0f, 0f);
-            agent.SetDestination(player.position);
+            if (agent != null)
+            {
+                agent.SetDestination(player.position);
+            }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
