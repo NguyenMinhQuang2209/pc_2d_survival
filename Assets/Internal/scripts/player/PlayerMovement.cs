@@ -49,7 +49,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 newRot = new(0f, movement.x < 0f ? 180f : 0f, 0f);
             transform.rotation = Quaternion.Euler(newRot);
-            Debug.Log((speed + plusSpeed));
             rb.MovePosition(rb.position + (speed + plusSpeed) * Time.fixedDeltaTime * movement.normalized);
         }
     }
