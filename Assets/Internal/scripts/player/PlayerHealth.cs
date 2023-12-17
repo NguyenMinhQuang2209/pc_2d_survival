@@ -33,4 +33,9 @@ public class PlayerHealth : Health
         healthSlider.value = GetCurrentHealth();
         healthTxt.text = GetCurrentHealth() + "/" + GetMaxHealth();
     }
+
+    public override void ObjectDie()
+    {
+        Time.timeScale = 0f;
+    }
 }

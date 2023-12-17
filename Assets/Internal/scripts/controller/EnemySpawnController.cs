@@ -7,6 +7,10 @@ public class EnemySpawnController : MonoBehaviour
     [SerializeField] private Vector2 spawnXAxisDown = Vector2.zero;
     [SerializeField] private Vector2 spawnYAxisTop = Vector2.zero;
     [SerializeField] private Vector2 spawnYAxisDown = Vector2.zero;
+
+    [Header("For spawn config")]
+    [SerializeField] private Vector2 xAxisDistance = Vector2.zero;
+    [SerializeField] private Vector2 yAxisDistance = Vector2.zero;
     [SerializeField] private float commonTimeBwtSpawn = 1f;
     float currentTimeBwtSpawn = 0f;
 
@@ -18,16 +22,6 @@ public class EnemySpawnController : MonoBehaviour
 
     private List<EnemySpawnTimeControl> enemySpawnConfig = new();
 
-    public struct EnemySpawnTimeControl
-    {
-        public float timeBtwSpawn;
-        public int currentIndex;
-        public EnemySpawnTimeControl(float timeBtwSpawn, int currentIndex)
-        {
-            this.timeBtwSpawn = timeBtwSpawn;
-            this.currentIndex = currentIndex;
-        }
-    }
 
     bool wasReload = false;
     private void Update()
@@ -59,9 +53,9 @@ public class EnemySpawnController : MonoBehaviour
                     if (tempEnemy.amount > 0)
                     {
                         bool canSpawn = item.timeBtwSpawn * item.currentIndex <= currentTimeBwtSpawn;
-                        item.currentIndex += 1;
                         if (canSpawn)
                         {
+                            item.UpdateCurrentIndex();
                             Enemy enemy = EnemyPrefab.instance.GetEnemy(tempEnemy.enemyName);
                             EnemySpawn(enemy.gameObject);
                             tempEnemy.amount -= 1;
@@ -120,18 +114,18 @@ public class EnemySpawnController : MonoBehaviour
         {
             case 0:
                 randomX = spawnXAxisTop;
-                randomY = spawnYAxisTop;
+                randomY = yAxisDistance;
                 break;
             case 1:
                 randomX = spawnXAxisDown;
-                randomY = spawnYAxisTop;
+                randomY = yAxisDistance;
                 break;
             case 2:
-                randomX = spawnXAxisTop;
-                randomY = spawnYAxisDown;
+                randomX = xAxisDistance;
+                randomY = spawnYAxisTop;
                 break;
             case 3:
-                randomX = spawnXAxisDown;
+                randomX = xAxisDistance;
                 randomY = spawnYAxisDown;
                 break;
         }
@@ -175,5 +169,19 @@ public class EnemyAutoSpawnTemp
         this.amount = amount;
         this.timeBwtSpawn = timeBwtSpawn;
         this.spawnAtHour = spawnAtHour;
+    }
+}
+public class EnemySpawnTimeControl
+{
+    public float timeBtwSpawn = 0f;
+    public int currentIndex = 0;
+    public EnemySpawnTimeControl(float timeBtwSpawn, int currentIndex)
+    {
+        this.timeBtwSpawn = timeBtwSpawn;
+        this.currentIndex = currentIndex;
+    }
+    public void UpdateCurrentIndex()
+    {
+        currentIndex += 1;
     }
 }
