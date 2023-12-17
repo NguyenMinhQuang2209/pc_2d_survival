@@ -8,6 +8,7 @@ public abstract class Health : MonoBehaviour
     protected int plusHealth = 0;
     int currentHealth = 0;
     bool objectDie = false;
+    public bool showDamageTxt = true;
     public void MyInitialised()
     {
         currentHealth = maxHealth + plusHealth;
@@ -17,6 +18,10 @@ public abstract class Health : MonoBehaviour
         if (objectDie)
         {
             return;
+        }
+        if (showDamageTxt)
+        {
+            DamageShowController.instance.ShowDamageTxt(transform.position, damage + "");
         }
         currentHealth = Mathf.Max(0, currentHealth - damage);
         if (currentHealth == 0)
