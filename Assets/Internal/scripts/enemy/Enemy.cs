@@ -9,6 +9,7 @@ public class Enemy : Health
     [SerializeField] private int coinGet = 1;
 
     Transform player;
+    Animator animator;
 
     private void Start()
     {
@@ -20,6 +21,7 @@ public class Enemy : Health
             agent.updateUpAxis = false;
         }
         player = GameObject.FindGameObjectWithTag(PlayerConfigController.PLAYER_TAG).transform;
+        animator = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -49,5 +51,13 @@ public class Enemy : Health
     {
         CoinController.instance.SpawnCoinObject(transform.position, coinGet);
         base.ObjectDie();
+    }
+    public override void TakeDamage(int damage)
+    {
+        if (animator != null)
+        {
+            animator.SetTrigger("Hit");
+        }
+        base.TakeDamage(damage);
     }
 }
