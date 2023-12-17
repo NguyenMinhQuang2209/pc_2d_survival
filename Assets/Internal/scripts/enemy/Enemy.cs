@@ -7,9 +7,12 @@ public class Enemy : Health
     [SerializeField] private float speed = 1f;
     [SerializeField] private int damage = 0;
     [SerializeField] private int coinGet = 1;
+    [SerializeField] private float damageBwtTime = 1f;
+    float currentDamageBwtTime = 0f;
 
     Transform player;
     Animator animator;
+
 
     private void Start()
     {
@@ -25,6 +28,7 @@ public class Enemy : Health
     }
     private void Update()
     {
+        currentDamageBwtTime += Time.deltaTime;
         if (player != null)
         {
             float check = player.position.x - transform.position.x;
@@ -35,16 +39,19 @@ public class Enemy : Health
             }
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        GameObject col = collision.gameObject;
-        if (col.CompareTag(PlayerConfigController.PLAYER_TAG))
+        if (currentDamageBwtTime >= damageBwtTime)
         {
-            if (col.TryGetComponent<Health>(out var health))
+            GameObject col = collision.gameObject;
+            if (col.CompareTag(PlayerConfigController.PLAYER_TAG))
             {
-                health.TakeDamage(damage);
-                ObjectDie();
+                if (col.TryGetComponent<Health>(out var health))
+                {
+                    health.TakeDamage(damage);
+                }
             }
+            currentDamageBwtTime = 0f;
         }
     }
     public override void ObjectDie()
