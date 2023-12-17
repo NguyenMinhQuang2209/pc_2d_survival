@@ -57,6 +57,7 @@ public class Enemy : Health
     public override void ObjectDie()
     {
         CoinController.instance.SpawnCoinObject(transform.position, coinGet);
+        SumupController.instance.AddOne();
         base.ObjectDie();
     }
     public override void TakeDamage(int damage)

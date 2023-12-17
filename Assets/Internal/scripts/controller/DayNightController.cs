@@ -37,17 +37,17 @@ public class DayNightController : MonoBehaviour
     }
     private void Start()
     {
-        startDate = DateTime.Now.Date + TimeSpan.FromHours(startTimeHour);
+        currentTime = DateTime.Now.Date + TimeSpan.FromHours(startTimeHour);
         sunRiseTime = TimeSpan.FromHours(sunRiseHour);
         sunSetTime = TimeSpan.FromHours(sunSetHour);
-        currentTime = startDate;
+        startDate = DateTime.Now.Date + TimeSpan.FromHours(0f);
     }
     private void Update()
     {
         currentTime = currentTime.AddSeconds(timeSpeed * Time.deltaTime);
         if (dateTxt != null)
         {
-            dateTxt.text = currentTime.ToString("HH:mm") + "\n" + "Ngày: " + ((currentTime - startDate).Days + 1);
+            dateTxt.text = currentTime.ToString("HH:mm") + "\n" + "Ngày: " + ((currentTime - startDate).Days);
         }
 
         if (currentTime.TimeOfDay >= sunRiseTime && currentTime.TimeOfDay < sunSetTime)

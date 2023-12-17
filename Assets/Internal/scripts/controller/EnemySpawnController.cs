@@ -33,13 +33,16 @@ public class EnemySpawnController : MonoBehaviour
             int currentHour = DayNightController.instance.GetCurrentHour();
             if (enemySpawnTemp != null && enemySpawnTemp.Count > 0)
             {
-                foreach (var enemyTemp in enemySpawnTemp)
+                for (int i = 0; i < enemySpawnTemp.Count; i++)
                 {
-                    if (enemyTemp.spawnAtHour < currentHour)
+                    var enemyTemp = enemySpawnTemp[i];
+
+                    if (enemyTemp.spawnAtHour <= currentHour)
                     {
-                        enemySpawnTemp.Remove(enemyTemp);
                         enemySpawns.Add(new(enemyTemp.enemyName, enemyTemp.amount, enemyTemp.timeBwtSpawn));
-                        enemySpawnConfig.Add(new(enemyTemp.timeBwtSpawn, 0));
+                        int ind = (int)(currentTimeBwtSpawn / enemyTemp.timeBwtSpawn) + 1;
+                        enemySpawnConfig.Add(new(enemyTemp.timeBwtSpawn, ind));
+                        enemySpawnTemp.RemoveAt(i);
                     }
                 }
             }
@@ -76,9 +79,9 @@ public class EnemySpawnController : MonoBehaviour
                 enemySpawnTemp?.Clear();
                 foreach (var enemy in enemiesConfig)
                 {
-                    if ((day + 1) >= enemy.startSpawnDay)
+                    if (day >= enemy.startSpawnDay)
                     {
-                        if (enemy.endSpawnDay >= 0 && (day + 1) > enemy.endSpawnDay)
+                        if (enemy.endSpawnDay >= 0 && day > enemy.endSpawnDay)
                         {
                             return;
                         }
