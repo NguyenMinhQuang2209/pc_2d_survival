@@ -1,18 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomlyWeapon : MonoBehaviour
+public class RandomlyWeapon : Weapon
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    float currentTimeBwtAttack = 0f;
+    [Space(10)]
+    [Header("Track radious")]
+    [SerializeField] private RandomlyBullet newBullet;
+    [SerializeField] private float trackRadious = 2f;
+    [SerializeField] private LayerMask enemymask;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        currentTimeBwtAttack += Time.deltaTime;
+        if (currentTimeBwtAttack >= GetTimeBwtAttack())
+        {
+            currentTimeBwtAttack = 0f;
+            Shoot();
+        }
+    }
+    public override void Shoot()
+    {
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, trackRadious, enemymask);
+        if (hit != null)
+        {
+            RandomlyBullet tempBullet = Instantiate(newBullet, transform.position, Quaternion.identity);
+            tempBullet.InitShoot(hit.transform, GetBulletSpeed(), GetDamage());
+        }
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, trackRadious);
     }
 }
