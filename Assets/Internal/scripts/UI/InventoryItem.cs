@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class InventoryItem : MonoBehaviour
 {
@@ -29,10 +28,7 @@ public class InventoryItem : MonoBehaviour
         string level = upgradeItem.GetLevel() < upgradeItem.levels.Count ? upgradeItem.GetLevel().ToString() : "Max";
         itemLevel.text = "Level:" + level;
         buytItemTxt.text = "Mua ( " + this.upgradeItem.GetPrice() + "c )";
-        if (this.upgradeItem.useCustomDescription)
-        {
-            itemDescription.text = this.upgradeItem.GetItemDescription();
-        }
+        itemDescription.text = this.upgradeItem.GetItemDescription();
         buyItemBtn.gameObject.SetActive(wasStored);
     }
     public void BuyItem()

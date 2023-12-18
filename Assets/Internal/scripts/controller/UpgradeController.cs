@@ -65,7 +65,6 @@ public class UpgradeController : MonoBehaviour
     }
     public void WasBuyItem(UpgradeItem item)
     {
-        return;
         if (storeForToday != null)
         {
             for (int i = 0; i < storeForToday.Count; i++)
@@ -138,6 +137,7 @@ public class UpgradeController : MonoBehaviour
 [System.Serializable]
 public class UpgradeItem
 {
+    public string defaultDescription = "";
     public bool useCustomDescription = false;
     public InventoryItem item;
     private int level = 0;
@@ -172,7 +172,7 @@ public class UpgradeItem
         {
             return "";
         }
-        return levels[level].description;
+        return useCustomDescription ? levels[level].description : defaultDescription;
     }
     public void UpdateLevel()
     {
