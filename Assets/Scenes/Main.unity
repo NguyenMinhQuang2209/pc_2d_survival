@@ -3154,12 +3154,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a94645104a72d947a4af8402703ece1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnXAxisTop: {x: 30, y: 38}
-  spawnXAxisDown: {x: -38, y: -30}
-  spawnYAxisTop: {x: 25, y: 29}
-  spawnYAxisDown: {x: -29, y: -25}
-  xAxisDistance: {x: 38, y: 38}
-  yAxisDistance: {x: -29, y: 29}
+  spawnXAxisTop: {x: 20, y: 30}
+  spawnXAxisDown: {x: -30, y: -20}
+  spawnYAxisTop: {x: 15, y: 20}
+  spawnYAxisDown: {x: -20, y: -15}
+  xAxisDistance: {x: -30, y: 30}
+  yAxisDistance: {x: -20, y: 20}
   commonTimeBwtSpawn: 1
   enemiesConfig:
   - startSpawnDay: 1
