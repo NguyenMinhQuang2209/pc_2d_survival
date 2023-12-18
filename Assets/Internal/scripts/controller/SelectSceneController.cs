@@ -23,4 +23,8 @@ public class SelectSceneController : MonoBehaviour
     {
         GameSceneManager.instance.LoadNewScene(SceneName.Main);
     }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
