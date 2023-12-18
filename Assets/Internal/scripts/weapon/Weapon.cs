@@ -71,6 +71,7 @@ public abstract class Weapon : MonoBehaviour
 
         string bulletAmountKey = weaponName.ToString() + plusBulletAmountKey;
         plusBulletAmount = (int)UpgradeController.instance.GetPlus(bulletAmountKey);
+
     }
 
     public virtual void Shoot()

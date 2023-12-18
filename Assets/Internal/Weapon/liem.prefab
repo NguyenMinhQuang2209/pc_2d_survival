@@ -100,9 +100,14 @@ MonoBehaviour:
   bullet: {fileID: 4471945141577614714, guid: 30263238150f04640a683c1baa69b201, type: 3}
   shootAngle: 10
   damage: 1
-  timeBwtAttack: 1
-  bulletAmount: 10
+  timeBwtAttack: 5
+  bulletAmount: 1
   bulletSpeed: 100
   bulletDelayTime: 1
   shootPos: {fileID: 0}
   weaponName: 7
+  plusBulletAmountKey: 0
+  plusDamageKey: 2
+  plusTimeBwtAttackKey: 3
+  plusDelayDieTimeKey: 5
+  plusBulletSpeedKey: 4

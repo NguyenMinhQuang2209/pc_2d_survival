@@ -54,8 +54,9 @@ public class UpgradeController : MonoBehaviour
         for (int i = 0; i < inventoryItems.Count; i++)
         {
             UpgradeItem tempItem = inventoryItems[i];
-            foreach (UpgradeItemNextLevel item in tempItem.levels)
+            for (int j = 0; j < tempItem.GetLevel(); j++)
             {
+                UpgradeItemNextLevel item = tempItem.levels[j];
                 string key = tempItem.itemName.ToString() + item.plusType;
                 plusStores[key] = plusStores.ContainsKey(key) ? plusStores[key] + item.plusValue : item.plusValue;
             }
@@ -64,6 +65,7 @@ public class UpgradeController : MonoBehaviour
     }
     public void WasBuyItem(UpgradeItem item)
     {
+        return;
         if (storeForToday != null)
         {
             for (int i = 0; i < storeForToday.Count; i++)

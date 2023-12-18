@@ -37,6 +37,8 @@ public class PlusCommonConfig : MonoBehaviour
                 return UpgradeController.instance.GetPlus(plusCoinGetKey.GetKey());
             case PlusCommonItem.Coin_Circle:
                 return UpgradeController.instance.GetPlus(plusCoinCircleKey.GetKey());
+            case PlusCommonItem.Recover_Health:
+                return UpgradeController.instance.GetPlus(plusHealthRecoverKey.GetKey());
             default:
                 break;
         }

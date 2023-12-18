@@ -101,12 +101,17 @@ MonoBehaviour:
   bullet: {fileID: 597639820671208177, guid: 4a876744945fa1a40895466ceb7a2f9a, type: 3}
   shootAngle: 10
   damage: 1
-  timeBwtAttack: 2
-  bulletAmount: 3
-  bulletSpeed: 500
-  bulletDelayTime: 3
+  timeBwtAttack: 5
+  bulletAmount: 1
+  bulletSpeed: 100
+  bulletDelayTime: 1
   shootPos: {fileID: 4534398966179283577}
   weaponName: 8
+  plusBulletAmountKey: 0
+  plusDamageKey: 2
+  plusTimeBwtAttackKey: 3
+  plusDelayDieTimeKey: 5
+  plusBulletSpeedKey: 4
 --- !u!1 &6315656958484068569
 GameObject:
   m_ObjectHideFlags: 0

@@ -100,8 +100,8 @@ MonoBehaviour:
   bullet: {fileID: 1194430203529144527, guid: dcdac83303010a34a8ae3ed25d796684, type: 3}
   shootAngle: 10
   damage: 1
-  timeBwtAttack: 1
-  bulletAmount: 10
+  timeBwtAttack: 5
+  bulletAmount: 1
   bulletSpeed: 100
   bulletDelayTime: 1
   shootPos: {fileID: 0}

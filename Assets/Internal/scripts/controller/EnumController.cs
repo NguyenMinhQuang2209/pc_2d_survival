@@ -22,7 +22,8 @@ public enum ItemPlusType
     Damage,
     TimeBwtAttack,
     Speed,
-    DelayDieTime
+    DelayDieTime,
+    Buyed
 }
 public enum UpdateType
 {
@@ -43,7 +44,8 @@ public enum PlusCommonItem
     Damage,
     TimeBwtAttack,
     Coin_Get,
-    Coin_Circle
+    Coin_Circle,
+    Recover_Health
 }
 public enum EnemyName
 {

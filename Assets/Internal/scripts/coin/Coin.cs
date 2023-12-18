@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    private int coinGet = 0;
+    [SerializeField] private int coinGet = 0;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(PlayerConfigController.PLAYER_TAG))
@@ -17,7 +17,7 @@ public class Coin : MonoBehaviour
         float coinCircle = PlusCommonConfig.instance.GetPlusCommon(PlusCommonItem.Coin_Circle);
         Vector2 defaultBoxSize = GetComponent<BoxCollider2D>().size;
         GetComponent<BoxCollider2D>().size = new(defaultBoxSize.x + coinCircle, defaultBoxSize.y + coinCircle);
-        plusCoin = plusCoin > 1f ? plusCoin : 1f;
+        plusCoin += 1;
         coinGet = (int)Mathf.Ceil(plusCoin * v);
     }
 }

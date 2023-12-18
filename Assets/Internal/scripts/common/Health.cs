@@ -43,6 +43,10 @@ public abstract class Health : MonoBehaviour
     {
         return maxHealth + plusHealth;
     }
+    public void RecoverHealth(int v)
+    {
+        currentHealth = Mathf.Min(currentHealth + v, GetMaxHealth());
+    }
 }
 [System.Serializable]
 public class PlusKey
