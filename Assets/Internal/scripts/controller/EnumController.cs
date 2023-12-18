@@ -52,3 +52,7 @@ public enum EnemyName
     Enemy_1,
     Enemy_2
 }
+public enum CharacterName
+{
+
+}
