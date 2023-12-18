@@ -12,12 +12,16 @@ public class PlayerMovement : MonoBehaviour
     Animator animator;
 
     Vector2 movement;
+    CharacterConfig temp = null;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        ResetCharacter();
         UpgradeController.instance.OnBuyPlusItem += OnChangePlusItemEvent;
-        DontDestroyOnLoad(gameObject);
+
+        if (SwitchCharacterController.instance != null)
+        {
+            OnChooseCharacter(SwitchCharacterController.instance.ChooseCharacter());
+        }
     }
 
     private void OnChangePlusItemEvent(object sender, EventArgs e)
@@ -32,6 +36,10 @@ public class PlayerMovement : MonoBehaviour
         if (animator != null)
         {
             animator.SetFloat("Speed", movement.sqrMagnitude);
+        }
+        else
+        {
+            animator = temp?.GetAnimator();
         }
     }
     private void FixedUpdate()
@@ -49,18 +57,6 @@ public class PlayerMovement : MonoBehaviour
     }
     public void OnChooseCharacter(CharacterConfig character)
     {
-        Instantiate(character, transform);
-        ResetCharacter();
-    }
-    public void ResetCharacter()
-    {
-        foreach (Transform child in transform)
-        {
-            if (child.gameObject.TryGetComponent<CharacterConfig>(out var config))
-            {
-                animator = config.GetAnimator();
-                break;
-            }
-        }
+        temp = Instantiate(character, transform);
     }
 }
