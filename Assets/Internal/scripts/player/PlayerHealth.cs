@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +9,7 @@ public class PlayerHealth : Health
     [SerializeField] private TextMeshProUGUI healthTxt;
 
     [SerializeField] private float recoverHealthPercentDefault = 30;
+
 
     int currentStoreDay = 0;
 
@@ -55,6 +56,6 @@ public class PlayerHealth : Health
 
     public override void ObjectDie()
     {
-        Time.timeScale = 0f;
+        WarningController.instance.PlayerDie();
     }
 }

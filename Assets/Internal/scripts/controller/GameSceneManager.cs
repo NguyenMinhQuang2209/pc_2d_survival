@@ -20,7 +20,6 @@ public class GameSceneManager : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName.ToString(), LoadSceneMode.Single);
     }
-
 }
 public enum SceneName
 {
