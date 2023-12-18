@@ -50,7 +50,14 @@ public enum PlusCommonItem
 public enum EnemyName
 {
     Enemy_1,
-    Enemy_2
+    Enemy_2,
+    Enemy_3,
+    Enemy_4,
+    Enemy_5,
+    Enemy_6,
+    Enemy_7,
+    Enemy_8,
+    Enemy_9
 }
 public enum CharacterName
 {
