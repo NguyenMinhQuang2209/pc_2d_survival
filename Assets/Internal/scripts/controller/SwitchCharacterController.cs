@@ -6,7 +6,7 @@ public class SwitchCharacterController : MonoBehaviour
     public static SwitchCharacterController instance;
 
     [SerializeField] private List<CharacterItem> characters = new();
-    [SerializeField] private Transform characterShowContainer;
+
     [SerializeField] private SelectCharacterItem spawnItem;
 
     private List<SelectCharacterItem> items = new();
@@ -21,19 +21,24 @@ public class SwitchCharacterController : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
     }
-    private void Start()
-    {
-        ShowCharacterItem();
-    }
     public void ShowCharacterItem()
     {
-        for (int i = 0; i < characters.Count; i++)
+        Transform characterShowContainer = SelectSceneController.instance.characterShowContainer;
+        if (characterShowContainer != null)
         {
-            SelectCharacterItem tempItem = Instantiate(spawnItem, characterShowContainer);
-            tempItem.InitSelect(false, characters[i].sprite, items == null ? 0 : items.Count);
-            items.Add(tempItem);
+            foreach (Transform child in characterShowContainer)
+            {
+                Destroy(child.gameObject);
+            }
+            items?.Clear();
+            for (int i = 0; i < characters.Count; i++)
+            {
+                SelectCharacterItem tempItem = Instantiate(spawnItem, characterShowContainer);
+                tempItem.InitSelect(false, characters[i].sprite, items == null ? 0 : items.Count);
+                items.Add(tempItem);
+            }
+            items[currentIndex].Selected(true);
         }
-        items[currentIndex].Selected(true);
     }
 
     public CharacterConfig ChooseCharacter()

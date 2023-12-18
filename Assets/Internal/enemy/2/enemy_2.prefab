@@ -123,9 +123,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24f67077f46d4a2458f127e7feff49e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
-  speed: 2
-  damage: 1
+  maxHealth: 4
+  showDamageTxt: 1
+  customTxtColor: {r: 1, g: 1, b: 1, a: 1}
+  speed: 1.4
+  damage: 4
   coinGet: 2
   damageBwtTime: 1
 --- !u!95 &6069169763161763662

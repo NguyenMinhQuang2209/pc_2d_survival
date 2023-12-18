@@ -123,9 +123,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  speed: 2
-  damage: 1
-  coinGet: 2
+  showDamageTxt: 1
+  customTxtColor: {r: 1, g: 1, b: 1, a: 1}
+  speed: 2.6
+  damage: 10
+  coinGet: 5
   damageBwtTime: 1
 --- !u!95 &6863582383340405151
 Animator:
