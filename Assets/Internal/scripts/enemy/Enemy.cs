@@ -13,6 +13,8 @@ public class Enemy : Health
     Transform player;
     Animator animator;
 
+    EnemyName enemyName;
+
 
     private void Start()
     {
@@ -39,6 +41,10 @@ public class Enemy : Health
             }
         }
     }
+    public void EnemyInit(EnemyName enemyName)
+    {
+        this.enemyName = enemyName;
+    }
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (currentDamageBwtTime >= damageBwtTime)
@@ -58,6 +64,7 @@ public class Enemy : Health
     {
         CoinController.instance.SpawnCoinObject(transform.position, coinGet);
         SumupController.instance.AddOne();
+        EnemySpawnController.instance.AddEnemy(enemyName);
         base.ObjectDie();
     }
     public override void TakeDamage(int damage)

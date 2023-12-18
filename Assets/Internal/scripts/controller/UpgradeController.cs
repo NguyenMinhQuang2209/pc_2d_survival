@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class UpgradeController : MonoBehaviour
 {
@@ -10,6 +9,9 @@ public class UpgradeController : MonoBehaviour
     private Dictionary<string, float> plusStores = new();
 
     public event EventHandler OnBuyPlusItem;
+    List<UpgradeItem> storeForToday = new();
+    int currentStoreDay = -1;
+    [SerializeField] private int showItemAmount = 3;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -22,6 +24,28 @@ public class UpgradeController : MonoBehaviour
     private void Start()
     {
         ResetStoreItemPlus();
+    }
+    public void ResetStoreItem()
+    {
+        int currentDay = DayNightController.instance.GetDay();
+        if (currentDay != currentStoreDay)
+        {
+            currentStoreDay = currentDay;
+            List<UpgradeItem> temp = GetListStoreItem();
+            if (temp != null && temp.Count <= showItemAmount)
+            {
+                storeForToday = temp;
+            }
+            else
+            {
+                storeForToday?.Clear();
+                for (int i = 0; i < showItemAmount; i++)
+                {
+                    int randomIndex = UnityEngine.Random.Range(0, temp.Count);
+                    storeForToday.Add(temp[randomIndex]);
+                }
+            }
+        }
     }
     public void ResetStoreItemPlus()
     {
@@ -38,6 +62,20 @@ public class UpgradeController : MonoBehaviour
         }
         OnBuyPlusItem?.Invoke(this, null);
     }
+    public void WasBuyItem(UpgradeItem item)
+    {
+        if (storeForToday != null)
+        {
+            for (int i = 0; i < storeForToday.Count; i++)
+            {
+                if (storeForToday[i] == item)
+                {
+                    storeForToday.RemoveAt(i);
+                    return;
+                }
+            }
+        }
+    }
     public List<UpgradeItem> GetListInventoryItem()
     {
         List<UpgradeItem> temp = new();
@@ -53,7 +91,7 @@ public class UpgradeController : MonoBehaviour
         }
         return temp;
     }
-    public List<UpgradeItem> GetListStoreItem()
+    private List<UpgradeItem> GetListStoreItem()
     {
         List<UpgradeItem> temp = new();
         if (upgradeItems != null)
@@ -74,6 +112,11 @@ public class UpgradeController : MonoBehaviour
             }
         }
         return temp;
+    }
+    public List<UpgradeItem> GetListStoreItemToday()
+    {
+        ResetStoreItem();
+        return storeForToday;
     }
     public float GetPlus(string key)
     {

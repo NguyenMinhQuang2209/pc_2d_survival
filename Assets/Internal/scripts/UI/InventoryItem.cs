@@ -76,6 +76,7 @@ public class InventoryItem : MonoBehaviour
                 }
             }
             upgradeItem.UpdateLevel();
+            UpgradeController.instance.WasBuyItem(upgradeItem);
             UIController.instance.ResetInventoryStoreItem();
         }
     }

@@ -8,6 +8,8 @@ public class UIController : MonoBehaviour
     public Transform inventoryContent;
     public Transform storeContent;
     public static UIController instance;
+
+    int currentStoreDay = -1;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -29,6 +31,12 @@ public class UIController : MonoBehaviour
         {
             CursorController.instance.SwitchCursor(MessageController.I_OPEN_INVENTORY, new() { bigContainer });
         }
+        int currentDay = DayNightController.instance.GetDay();
+        if (currentStoreDay != currentDay)
+        {
+            currentStoreDay = currentDay;
+            ResetInventoryStoreItem();
+        }
     }
     public void ResetInventoryStoreItem()
     {
@@ -36,14 +44,14 @@ public class UIController : MonoBehaviour
         ClearContentItem(storeContent);
 
         List<UpgradeItem> inventoryItems = UpgradeController.instance.GetListInventoryItem();
-        List<UpgradeItem> storeItems = UpgradeController.instance.GetListStoreItem();
-
         foreach (var item in inventoryItems)
         {
             InventoryItem tempItem = Instantiate(item.item, inventoryContent);
             tempItem.MyInitialized(false, item);
         }
 
+
+        List<UpgradeItem> storeItems = UpgradeController.instance.GetListStoreItemToday();
         foreach (var item in storeItems)
         {
             InventoryItem tempItem = Instantiate(item.item, storeContent);

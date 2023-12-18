@@ -8,12 +8,20 @@ public class RandomlyBullet : MonoBehaviour
     float speed = 0f;
     int damage = 0;
     [SerializeField] private LayerMask enemyMask;
+    private void Start()
+    {
+        Destroy(gameObject, 10f);
+    }
     private void Update()
     {
         if (target != null)
         {
             Vector3 targetPosition = target.transform.position;
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
     public void InitShoot(Transform target, float speed, int damage)

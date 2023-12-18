@@ -20,4 +20,9 @@ public class DamageShowConfig : MonoBehaviour
     {
         txt.text = damage;
     }
+    public void InitText(string damage, Color txtColor)
+    {
+        txt.text = damage;
+        txt.color = txtColor;
+    }
 }

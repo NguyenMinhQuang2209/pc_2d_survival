@@ -8,7 +8,6 @@ public class DayNightController : MonoBehaviour
     public static DayNightController instance;
 
     [SerializeField] private TextMeshProUGUI dateTxt;
-    [SerializeField] private Light2D light2D;
 
     [Space(10)]
     [Header("Time config")]
@@ -17,8 +16,6 @@ public class DayNightController : MonoBehaviour
     [SerializeField] private float sunRiseHour = 7f;
     [SerializeField] private float sunSetHour = 7f;
 
-    [SerializeField] private float nightIntensity = 0.5f;
-    [SerializeField] private float dayIntensity = 1f;
     DateTime startDate;
     DateTime currentTime;
     TimeSpan sunRiseTime;
@@ -26,6 +23,7 @@ public class DayNightController : MonoBehaviour
 
     bool isNight = false;
 
+    [SerializeField] private GameObject nightImageObject;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -41,6 +39,16 @@ public class DayNightController : MonoBehaviour
         sunRiseTime = TimeSpan.FromHours(sunRiseHour);
         sunSetTime = TimeSpan.FromHours(sunSetHour);
         startDate = DateTime.Now.Date + TimeSpan.FromHours(0f);
+        if (currentTime.TimeOfDay >= sunRiseTime && currentTime.TimeOfDay < sunSetTime)
+        {
+            nightImageObject.SetActive(false);
+            isNight = false;
+        }
+        else
+        {
+            nightImageObject.SetActive(true);
+            isNight = true;
+        }
     }
     private void Update()
     {
@@ -52,17 +60,20 @@ public class DayNightController : MonoBehaviour
 
         if (currentTime.TimeOfDay >= sunRiseTime && currentTime.TimeOfDay < sunSetTime)
         {
-            light2D.intensity = dayIntensity;
-            isNight = false;
+            if (isNight)
+            {
+                nightImageObject.SetActive(false);
+                isNight = false;
+            }
         }
         else
         {
-            light2D.intensity = nightIntensity;
             if (!isNight)
             {
+                nightImageObject.SetActive(true);
+                isNight = true;
                 LogController.instance.Log("Đêm rồi!");
             }
-            isNight = true;
         }
     }
     public bool IsNight()

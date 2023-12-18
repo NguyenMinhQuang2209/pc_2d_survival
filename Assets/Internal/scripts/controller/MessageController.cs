@@ -11,4 +11,7 @@ public class MessageController : MonoBehaviour
 
     //other message
     public static string I_OPEN_INVENTORY = "Inventory";
+
+    //tag
+    public static string DESTROY_ON_NIGHT_TAG = "Enemy";
 }

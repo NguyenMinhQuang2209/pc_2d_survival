@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Coin : MonoBehaviour
@@ -19,6 +17,7 @@ public class Coin : MonoBehaviour
         float coinCircle = PlusCommonConfig.instance.GetPlusCommon(PlusCommonItem.Coin_Circle);
         Vector2 defaultBoxSize = GetComponent<BoxCollider2D>().size;
         GetComponent<BoxCollider2D>().size = new(defaultBoxSize.x + coinCircle, defaultBoxSize.y + coinCircle);
-        coinGet = (int)Mathf.Ceil(v * plusCoin);
+        plusCoin = plusCoin > 1f ? plusCoin : 1f;
+        coinGet = (int)Mathf.Ceil(plusCoin * v);
     }
 }

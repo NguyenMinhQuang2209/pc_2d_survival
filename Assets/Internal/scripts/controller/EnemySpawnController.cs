@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class EnemySpawnController : MonoBehaviour
 {
+    public static EnemySpawnController instance;
+
     [SerializeField] private Vector2 spawnXAxisTop = Vector2.zero;
     [SerializeField] private Vector2 spawnXAxisDown = Vector2.zero;
     [SerializeField] private Vector2 spawnYAxisTop = Vector2.zero;
@@ -24,6 +26,16 @@ public class EnemySpawnController : MonoBehaviour
 
 
     bool wasReload = false;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+    }
     private void Update()
     {
         if (!DayNightController.instance.IsNight())
@@ -60,7 +72,7 @@ public class EnemySpawnController : MonoBehaviour
                         {
                             item.UpdateCurrentIndex();
                             Enemy enemy = EnemyPrefab.instance.GetEnemy(tempEnemy.enemyName);
-                            EnemySpawn(enemy.gameObject);
+                            EnemySpawn(enemy, tempEnemy.enemyName);
                             tempEnemy.amount -= 1;
                         }
                     }
@@ -71,6 +83,11 @@ public class EnemySpawnController : MonoBehaviour
         {
             if (!wasReload)
             {
+                GameObject[] list = GameObject.FindGameObjectsWithTag(MessageController.DESTROY_ON_NIGHT_TAG);
+                for (int i = 0; i < list.Length; i++)
+                {
+                    Destroy(list[i]);
+                }
                 wasReload = true;
                 currentTimeBwtSpawn = 0f;
                 int day = DayNightController.instance.GetDay();
@@ -107,7 +124,7 @@ public class EnemySpawnController : MonoBehaviour
             }
         }
     }
-    private void EnemySpawn(GameObject enemySpawn)
+    private void EnemySpawn(Enemy enemySpawn, EnemyName name)
     {
         int ranPos = Random.Range(0, 4);
         Vector2 randomX = Vector2.zero;
@@ -135,7 +152,23 @@ public class EnemySpawnController : MonoBehaviour
 
         float ranX = Random.Range(Mathf.Min(randomX.x, randomX.y), Mathf.Max(randomX.x, randomX.y));
         float ranY = Random.Range(Mathf.Min(randomY.x, randomY.y), Mathf.Max(randomY.x, randomY.y));
-        Instantiate(enemySpawn, new(ranX, ranY, 0f), Quaternion.identity);
+        Enemy enemy = Instantiate(enemySpawn, new(ranX, ranY, 0f), Quaternion.identity);
+        enemy?.EnemyInit(name);
+    }
+    public void AddEnemy(EnemyName name)
+    {
+        if (enemySpawnConfig != null && enemySpawnConfig.Count > 0)
+        {
+            for (int i = 0; i < enemySpawnConfig.Count; i++)
+            {
+                EnemyAutoSpawnItem tempEnemy = enemySpawns[i];
+                if (tempEnemy.enemyName == name)
+                {
+                    tempEnemy.PlusAmount();
+                    return;
+                }
+            }
+        }
     }
 }
 [System.Serializable]
@@ -157,6 +190,10 @@ public class EnemyAutoSpawnItem
         this.enemyName = enemyName;
         this.amount = amount;
         this.timeBwtSpawn = timeBwtSpawn;
+    }
+    public void PlusAmount()
+    {
+        amount += 1;
     }
 }
 

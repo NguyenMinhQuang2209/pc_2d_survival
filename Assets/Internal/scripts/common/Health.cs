@@ -9,6 +9,7 @@ public abstract class Health : MonoBehaviour
     int currentHealth = 0;
     bool objectDie = false;
     public bool showDamageTxt = true;
+    [SerializeField] private Color customTxtColor = Color.white;
     public void MyInitialised()
     {
         currentHealth = maxHealth + plusHealth;
@@ -21,7 +22,7 @@ public abstract class Health : MonoBehaviour
         }
         if (showDamageTxt)
         {
-            DamageShowController.instance.ShowDamageTxt(transform.position, damage + "");
+            DamageShowController.instance.ShowDamageTxt(transform.position, damage + "", customTxtColor);
         }
         currentHealth = Mathf.Max(0, currentHealth - damage);
         if (currentHealth == 0)

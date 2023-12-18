@@ -15,9 +15,9 @@ public class DamageShowController : MonoBehaviour
         }
         instance = this;
     }
-    public void ShowDamageTxt(Vector3 pos, string damage)
+    public void ShowDamageTxt(Vector3 pos, string damage, Color txtColor)
     {
         DamageShowConfig temp = Instantiate(showConfigObject, pos, Quaternion.identity);
-        temp.InitText(damage);
+        temp.InitText(damage, txtColor);
     }
 }
